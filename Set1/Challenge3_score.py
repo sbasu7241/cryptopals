@@ -15,7 +15,15 @@ def get_english_score(input_bytes):
 	return sum([englishLetterFreq.get(chr(byte), 0) for byte in input_bytes.upper()])
 	
 	
-
+def brute_single_char_xor(input_bytes):
+	max_score = 0;
+	actual_string = b''
+	for r in result:
+		score = get_english_score(single_char_xor(input_bytes,ord(r)))
+		if score > max_score:
+			max_score = score		
+			actual_string = single_char_xor(input_bytes,ord(r))
+	return actual_string
 		
 		
 
@@ -31,15 +39,8 @@ def main():
 
 	hex_string = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 	str1 = bytes.fromhex(hex_string) #Byte array of hex string
-	max_score = 0;
-	actual_string = b''
-	for r in result:
-		score = get_english_score(single_char_xor(str1,ord(r)))
-		if score > max_score:
-			max_score = score		
-			actual_string = single_char_xor(str1,ord(r))
-
-	print("XOR'ed actual string >> "+actual_string.decode())	
+	
+	print("XOR'ed actual string >> "+brute_single_char_xor(str1).decode())	
 		
 	
 if __name__=="__main__":
